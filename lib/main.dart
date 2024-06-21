@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:worker_holic/view_pages/home_v.dart';
-import 'package:worker_holic/view_pages/login_v.dart';
+import 'package:get/get.dart';
+import 'package:workaholic/controllers/root_controller.dart';
+import 'package:workaholic/views/bottom_pages/calender_page_view.dart';
+import 'package:workaholic/views/bottom_pages/home_page_view.dart';
+import 'package:workaholic/views/bottom_pages/root_page_view.dart';
+import 'package:workaholic/views/bottom_pages/summary_page_view.dart';
+import 'package:workaholic/views/user_pages/login_page_view.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:worker_holic/view_pages/signup_v.dart';
+import 'package:workaholic/views/user_pages/signup_page_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -19,25 +22,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/login',
+      initialBinding: BindingsBuilder(() {
+        Get.put(RootController());
+      }),
       getPages: [
         GetPage(
           name: '/login',
-          page: () => const LoginPage(),
+          page: () => const LogInPageView(),
         ),
         GetPage(
-          name: '/sign up',
-          page: () => const SignUpPage(),
+          name: '/signup',
+          page: () => const SignUpPageView(),
         ),
         GetPage(
           name: '/home',
-          page: () => const HomePage(),
+          page: () => const HomePageView(),
+        ),
+        GetPage(
+          name: '/calender',
+          page: () => const CalenderPageView(),
+        ),
+        GetPage(
+          name: '/summary',
+          page: () => const SummaryPageView(),
+        ),
+        GetPage(
+          name: '/root',
+          page: () => const RootPageView(),
         ),
       ],
-      theme: ThemeData(
-        primaryColor: Colors.pink[200],
-      ),
-      title: 'Worker Holic',
+      title: 'WorkaHolic',
+      home: const LogInPageView(),
     );
   }
 }

@@ -1,4 +1,4 @@
-package com.example.worker_holic
+package com.example.workaholic
 
 import io.flutter.embedding.android.FlutterActivity
 
