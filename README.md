@@ -1,4 +1,4 @@
-# worker_holic
+# workaholic
 
 A new Flutter project.
 
