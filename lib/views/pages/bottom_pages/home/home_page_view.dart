@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workaholic/btn/add_spot.dart';
-import 'package:workaholic/models/cards/weekly_calender.dart';
-import 'package:workaholic/models/cards/work_spots.dart';
-import 'package:workaholic/models/cards/work_timer.dart';
+import 'package:workaholic/views/btn/add_spot_btn.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/cards/weekly_calender_card.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/cards/work_spot_card.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/cards/work_timer_card.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -50,15 +50,15 @@ class _HomePageState extends State<HomePageView> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    SpotCard(),
-                    SpotCard(),
-                    SpotCard(),
+                    WorkSpotCard(),
+                    WorkSpotCard(),
+                    WorkSpotCard(),
                   ],
                 ),
               ),
 
               // 근무지 -> 슬라이더로
-              const AddSpot(), //추가
+              const AddSpotBtn(), //추가
             ],
           ),
         ));

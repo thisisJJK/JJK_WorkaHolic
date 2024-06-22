@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AddSpot extends StatelessWidget {
-  const AddSpot({super.key});
+class AddSpotBtn extends StatelessWidget {
+  const AddSpotBtn({super.key});
 
   @override
   Widget build(BuildContext context) {

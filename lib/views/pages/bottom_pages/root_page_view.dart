@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/controllers/root_controller.dart';
-import 'package:workaholic/views/bottom_pages/calender_page_view.dart';
-import 'package:workaholic/views/bottom_pages/home_page_view.dart';
-import 'package:workaholic/views/bottom_pages/summary_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/calender/calender_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/home_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/summary/summary_page_view.dart';
 
 class RootPageView extends GetView<RootController> {
   const RootPageView({super.key});

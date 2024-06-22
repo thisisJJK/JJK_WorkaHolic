@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workaholic/btn/signup_btn.dart';
+import 'package:workaholic/views/btn/signup_btn.dart';
 
 class LogInPageView extends StatefulWidget {
   const LogInPageView({super.key});

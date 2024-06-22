@@ -66,8 +66,26 @@ class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
             thickness: 0.5,
             color: Colors.black26,
           ),
-          const Center(
-            child: Text('메모장'),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25 * 0.31,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  color: Colors.grey[200],
+                  padding: const EdgeInsets.all(8),
+                  child: const Text('어제'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: const Text('오늘'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: const Text('내일'),
+                ),
+              ],
+            ),
           )
         ],
       ),

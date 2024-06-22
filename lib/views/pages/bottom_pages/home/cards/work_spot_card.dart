@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SpotCard extends StatelessWidget {
-  const SpotCard({super.key});
+class WorkSpotCard extends StatelessWidget {
+  const WorkSpotCard({super.key});
 
   @override
   Widget build(BuildContext context) {

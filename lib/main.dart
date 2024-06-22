@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/controllers/root_controller.dart';
-import 'package:workaholic/views/bottom_pages/calender_page_view.dart';
-import 'package:workaholic/views/bottom_pages/home_page_view.dart';
-import 'package:workaholic/views/bottom_pages/root_page_view.dart';
-import 'package:workaholic/views/bottom_pages/summary_page_view.dart';
-import 'package:workaholic/views/user_pages/login_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/calender/calender_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/home_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/root_page_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/summary/summary_page_view.dart';
+import 'package:workaholic/views/pages/user_pages/login_page_view.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:workaholic/views/user_pages/signup_page_view.dart';
+import 'package:workaholic/views/pages/user_pages/signup_page_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
