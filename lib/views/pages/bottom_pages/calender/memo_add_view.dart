@@ -28,11 +28,30 @@ class MemoAddView extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               if (memo == null) {
-                memoController.addMemos(_textController.text, date!);
+                if (_textController.text.isEmpty) {
+                  Get.back();
+                  Get.snackbar('!', '내용이 없습니다.',
+                      duration: const Duration(milliseconds: 1000),
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: Colors.yellow[100]);
+                } else {
+                  memoController.addMemos(_textController.text, date!);
+                  Get.toNamed('/root');
+                }
               } else {
                 memoController.updateMemos(memo!.id, _textController.text);
+                if (_textController.text.isEmpty) {
+                  memoController.deleteMemos(memo!.id);
+
+                  Get.back();
+                  Get.snackbar('!', '삭제되었습니다.',
+                      duration: const Duration(milliseconds: 1000),
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: Colors.red[200]);
+                } else {
+                  Get.back();
+                }
               }
-              Get.back();
             },
             child: const Text('저장하기'),
           ),

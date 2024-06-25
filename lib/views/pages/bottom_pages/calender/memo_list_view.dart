@@ -20,7 +20,9 @@ class _MemoListViewState extends State<MemoListView> {
           itemCount: controller.memos.length,
           itemBuilder: (BuildContext context, int index) {
             final memo = controller.memos[index];
-            return MemoItem(memo: memo);
+            return memo.date != DateTime.now().toIso8601String()
+                ? MemoItem(memo: memo)
+                : const Text('메모 없음');
           },
         ),
       ),

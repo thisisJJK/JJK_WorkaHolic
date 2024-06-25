@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/models/memo/memo_model.dart';
 import 'package:workaholic/views/pages/bottom_pages/calender/memo_add_view.dart';
@@ -9,11 +10,14 @@ class MemoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(memo.content),
-      onTap: () {
-        Get.to(() => MemoAddView(memo: memo));
-      },
+    return Card(
+      color: Colors.green[200],
+      child: ListTile(
+        title: Text(memo.content),
+        onTap: () {
+          Get.to(() => MemoAddView(memo: memo));
+        },
+      ),
     );
   }
 }

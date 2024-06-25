@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:workaholic/controllers/memo_controller.dart';
+import 'package:workaholic/controllers/selected_day_controller.dart';
 import 'package:workaholic/views/pages/bottom_pages/calender/memo_add_view.dart';
 import 'package:workaholic/views/pages/bottom_pages/calender/memo_list_view.dart';
 
@@ -14,8 +15,10 @@ class CalenderPageView extends StatefulWidget {
 
 class _CalenderPageState extends State<CalenderPageView> {
   late final ValueNotifier<DateTime> _focusedDay;
-  DateTime _selectedDay = DateTime.now();
-  final MemoController controller = Get.put(MemoController());
+
+  final MemoController _memoController = Get.put(MemoController());
+  final SelectedDayController _selectedDayController =
+      Get.put(SelectedDayController());
 
   @override
   void initState() {
@@ -35,32 +38,33 @@ class _CalenderPageState extends State<CalenderPageView> {
       body: SafeArea(
         child: Column(
           children: [
-            TableCalendar(
-              firstDay: DateTime.utc(2020, 1, 1),
-              lastDay: DateTime.utc(2030, 12, 31),
-              focusedDay: _focusedDay.value,
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
-              },
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay.value = focusedDay;
-                });
-                controller.fetchMemos(_selectedDay);
-              },
-              headerStyle: const HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-              ),
-              calendarStyle: CalendarStyle(
-                selectedDecoration: BoxDecoration(
-                  color: Colors.blue[200],
-                  shape: BoxShape.circle,
+            Obx(
+              () => TableCalendar(
+                firstDay: DateTime.utc(2020, 1, 1),
+                lastDay: DateTime.utc(2030, 12, 31),
+                focusedDay: _selectedDayController.selectedDay.value,
+                selectedDayPredicate: (day) {
+                  return isSameDay(
+                      _selectedDayController.selectedDay.value, day);
+                },
+                onDaySelected: (selectedDay, focusedDay) {
+                  _selectedDayController.updateSelectedDay(selectedDay);
+                  _memoController
+                      .fetchMemos(_selectedDayController.selectedDay.value);
+                },
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
                 ),
-                todayDecoration: BoxDecoration(
-                  color: Colors.red[100],
-                  shape: BoxShape.circle,
+                calendarStyle: CalendarStyle(
+                  selectedDecoration: BoxDecoration(
+                    color: Colors.blue[200],
+                    shape: BoxShape.circle,
+                  ),
+                  todayDecoration: BoxDecoration(
+                    color: Colors.red[100],
+                    shape: BoxShape.circle,
+                  ),
                 ),
               ),
             ),
@@ -71,7 +75,7 @@ class _CalenderPageState extends State<CalenderPageView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(
-            () => MemoAddView(date: _selectedDay),
+            () => MemoAddView(date: _selectedDayController.selectedDay.value),
           );
         },
         child: const Icon(Icons.add),

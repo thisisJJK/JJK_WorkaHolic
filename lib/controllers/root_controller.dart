@@ -5,5 +5,7 @@ class RootController extends GetxController {
 
   void changeRootPageIndex(int index) {
     rootPageIndex(index);
+
+    print('$index');
   }
 }

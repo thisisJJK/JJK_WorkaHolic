@@ -28,7 +28,12 @@ class MemoController extends GetxController {
         'content': content,
         'date': date.toIso8601String().substring(0, 10)
       });
-      memos.add(MemoModel(id: doc.id, content: content, date: date));
+      if (content.isBlank!) {
+        memos.add(MemoModel(id: doc.id, content: content, date: date));
+        memos.refresh();
+      } else {
+        memos.refresh();
+      }
     } catch (e) {
       print('addMemos Error : $e ');
     }

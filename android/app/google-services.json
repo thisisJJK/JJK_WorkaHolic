@@ -1,33 +1,13 @@
 {
   "project_info": {
-    "project_number": "181149585288",
-    "firebase_url": "https://test2-d827a-default-rtdb.firebaseio.com",
-    "project_id": "test2-d827a",
-    "storage_bucket": "test2-d827a.appspot.com"
+    "project_number": "917250790118",
+    "project_id": "test-firebase-9d3a4",
+    "storage_bucket": "test-firebase-9d3a4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:181149585288:android:08bdf164c68d9df706743d",
-        "android_client_info": {
-          "package_name": "com.example.fire_test"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCefArIu40_d_jz4JD7gRmWQ4l6jdqdVdk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:181149585288:android:7ad30ed10a1b160b06743d",
+        "mobilesdk_app_id": "1:917250790118:android:358c639cc2f47351602127",
         "android_client_info": {
           "package_name": "com.example.workaholic"
         }
@@ -35,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCefArIu40_d_jz4JD7gRmWQ4l6jdqdVdk"
+          "current_key": "AIzaSyBlksziC5tU3qYW-VXGXlfDRNWdfw8m9kI"
         }
       ],
       "services": {

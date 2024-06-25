@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:workaholic/controllers/memo_controller.dart';
+import 'package:workaholic/controllers/selected_day_controller.dart';
+import 'package:workaholic/views/pages/bottom_pages/calender/memo_list_view.dart';
 
 class WeeklyCalenderCard extends StatefulWidget {
   const WeeklyCalenderCard({super.key});
@@ -10,8 +15,10 @@ class WeeklyCalenderCard extends StatefulWidget {
 
 class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
   late final ValueNotifier<DateTime> _focusedDay;
-  DateTime _selectedDay = DateTime.now();
-
+  //final DateTime _selectedDay = DateTime.now();
+  final MemoController _memoController = Get.put(MemoController());
+  final SelectedDayController _selectedDayController =
+      Get.put(SelectedDayController());
   @override
   void initState() {
     super.initState();
@@ -27,38 +34,39 @@ class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.lightGreen[200]),
       child: Column(
         children: [
-          TableCalendar(
-            firstDay: DateTime.utc(2020, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
-            focusedDay: _focusedDay.value,
-            selectedDayPredicate: (day) {
-              return isSameDay(_selectedDay, day);
-            },
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay.value = focusedDay;
-              });
-            },
-            calendarFormat: CalendarFormat.week,
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
-            calendarStyle: CalendarStyle(
-              selectedDecoration: BoxDecoration(
-                color: Colors.blue[200],
-                shape: BoxShape.circle,
+          Obx(
+            () => TableCalendar(
+              firstDay: DateTime.utc(2020, 1, 1),
+              lastDay: DateTime.utc(2030, 12, 31),
+              focusedDay: _selectedDayController.selectedDay.value,
+              selectedDayPredicate: (day) {
+                return isSameDay(_selectedDayController.selectedDay.value, day);
+              },
+              onDaySelected: (selectedDay, focusedDay) {
+                _selectedDayController.updateSelectedDay(selectedDay);
+                _memoController
+                    .fetchMemos(_selectedDayController.selectedDay.value);
+              },
+              calendarFormat: CalendarFormat.week,
+              headerStyle: const HeaderStyle(
+                formatButtonVisible: false,
+                titleCentered: true,
               ),
-              todayDecoration: BoxDecoration(
-                color: Colors.red[100],
-                shape: BoxShape.circle,
+              calendarStyle: CalendarStyle(
+                selectedDecoration: BoxDecoration(
+                  color: Colors.blue[200],
+                  shape: BoxShape.circle,
+                ),
+                todayDecoration: BoxDecoration(
+                  color: Colors.red[100],
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ),
@@ -66,27 +74,7 @@ class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
             thickness: 0.5,
             color: Colors.black26,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25 * 0.31,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  color: Colors.grey[200],
-                  padding: const EdgeInsets.all(8),
-                  child: const Text('어제'),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: const Text('오늘'),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: const Text('내일'),
-                ),
-              ],
-            ),
-          )
+          const MemoListView(),
         ],
       ),
     );
