@@ -6,6 +6,13 @@ class MemoController extends GetxController {
   var memos = <MemoModel>[].obs;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  @override
+  void onInit() {
+    super.onInit();
+    // 컨트롤러 생성될 때 바로 실행
+    fetchMemos(DateTime.now());
+  }
+
   Future<void> fetchMemos(DateTime seleletedDay) async {
     try {
       final snapshot = await _firestore
@@ -17,6 +24,9 @@ class MemoController extends GetxController {
       memos.value = snapshot.docs
           .map((doc) => MemoModel.fromMap(doc.id, doc.data()))
           .toList();
+
+      // GetBuilder 사용시
+      // update();
     } catch (e) {
       print('fetchMemos Error : $e ');
     }

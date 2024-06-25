@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workaholic/controllers/memo_controller.dart';
 import 'package:workaholic/views/btn/add_spot_btn.dart';
 import 'package:workaholic/views/pages/bottom_pages/home/cards/weekly_calender_card.dart';
 import 'package:workaholic/views/pages/bottom_pages/home/cards/work_spot_card.dart';
@@ -14,6 +15,15 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePageView> {
+  final MemoController memoController = Get.put(MemoController());
+
+  @override
+  void initState() {
+    memoController.fetchMemos(DateTime.now());
+
+    super.initState();
+  }
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override

@@ -38,10 +38,10 @@ class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.lightGreen[200]),
-      child: Column(
-        children: [
-          Obx(
-            () => TableCalendar(
+      child: Obx(
+        () => Column(
+          children: [
+            TableCalendar(
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2030, 12, 31),
               focusedDay: _selectedDayController.selectedDay.value,
@@ -69,13 +69,13 @@ class _WeekCalenderCardState extends State<WeeklyCalenderCard> {
                 ),
               ),
             ),
-          ),
-          const Divider(
-            thickness: 0.5,
-            color: Colors.black26,
-          ),
-          const MemoListView(),
-        ],
+            const Divider(
+              thickness: 0.5,
+              color: Colors.black26,
+            ),
+            const MemoListView(),
+          ],
+        ),
       ),
     );
   }

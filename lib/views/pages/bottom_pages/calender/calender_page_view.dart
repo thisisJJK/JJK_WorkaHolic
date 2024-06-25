@@ -36,10 +36,10 @@ class _CalenderPageState extends State<CalenderPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Obx(
-              () => TableCalendar(
+        child: Obx(
+          () => Column(
+            children: [
+              TableCalendar(
                 firstDay: DateTime.utc(2020, 1, 1),
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: _selectedDayController.selectedDay.value,
@@ -67,9 +67,9 @@ class _CalenderPageState extends State<CalenderPageView> {
                   ),
                 ),
               ),
-            ),
-            const MemoListView(),
-          ],
+              const MemoListView()
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

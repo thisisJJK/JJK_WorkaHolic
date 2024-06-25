@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/controllers/memo_controller.dart';
+import 'package:workaholic/controllers/selected_day_controller.dart';
 import 'package:workaholic/models/memo/memo_model.dart';
 
 class MemoAddView extends StatelessWidget {
@@ -13,6 +14,8 @@ class MemoAddView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MemoController memoController = Get.find();
+    final SelectedDayController selectedDayController =
+        Get.put(SelectedDayController());
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +39,12 @@ class MemoAddView extends StatelessWidget {
                       backgroundColor: Colors.yellow[100]);
                 } else {
                   memoController.addMemos(_textController.text, date!);
-                  Get.toNamed('/root');
+
+                  selectedDayController.updateSelectedDay(
+                      selectedDayController.selectedDay.value);
+                  memoController
+                      .fetchMemos(selectedDayController.selectedDay.value);
+                  Get.back();
                 }
               } else {
                 memoController.updateMemos(memo!.id, _textController.text);

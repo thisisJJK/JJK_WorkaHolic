@@ -4,7 +4,11 @@ import 'package:workaholic/controllers/memo_controller.dart';
 import 'package:workaholic/views/pages/bottom_pages/calender/memo_item.dart';
 
 class MemoListView extends StatefulWidget {
-  const MemoListView({super.key});
+  const MemoListView({
+    super.key,
+  });
+
+  //final RxList<MemoModel> itemList;
 
   @override
   State<MemoListView> createState() => _MemoListViewState();
@@ -12,6 +16,7 @@ class MemoListView extends StatefulWidget {
 
 class _MemoListViewState extends State<MemoListView> {
   final MemoController controller = Get.put(MemoController());
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
