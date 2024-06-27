@@ -11,7 +11,7 @@ class _SummaryPageState extends State<SummaryPageView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('통계'),
+      body: Center(child: Text('통계')),
     );
   }
 }

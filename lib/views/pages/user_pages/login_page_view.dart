@@ -65,18 +65,24 @@ class _LoginFieldState extends State<_LogInFieldWidget> {
   }
 
   Future<void> _login() async {
+    bool isTextCheck = _emailController.text.isNotEmpty &&
+        _pwdController.text.isNotEmpty &&
+        _emailController.text.contains('@');
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _pwdController.text,
-      );
-      if (userCredential.user != null) {
-        Get.toNamed('/root');
+      if (isTextCheck) {
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _pwdController.text,
+        );
+
+        if (userCredential.user != null) {
+          Get.toNamed('/root');
+        }
       }
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        _errorMessage = e.message;
-      });
+      _errorMessage = e.code;
+      Get.snackbar('!', '$_errorMessage',
+          snackPosition: SnackPosition.TOP, backgroundColor: Colors.red[300]);
     }
   }
 

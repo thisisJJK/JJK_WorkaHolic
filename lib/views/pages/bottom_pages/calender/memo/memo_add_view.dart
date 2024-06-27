@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/controllers/memo_controller.dart';
 import 'package:workaholic/controllers/selected_day_controller.dart';
-import 'package:workaholic/models/memo/memo_model.dart';
+import 'package:workaholic/models/memo_model.dart';
 
 class MemoAddView extends StatelessWidget {
   final MemoModel? memo;
@@ -22,6 +22,7 @@ class MemoAddView extends StatelessWidget {
         title: Text(memo == null ? '메모 추가' : '메모 수정'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
             controller: _textController,

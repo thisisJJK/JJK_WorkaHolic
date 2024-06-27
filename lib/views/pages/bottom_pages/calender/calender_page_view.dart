@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:workaholic/controllers/memo_controller.dart';
 import 'package:workaholic/controllers/selected_day_controller.dart';
-import 'package:workaholic/views/pages/bottom_pages/calender/memo_add_view.dart';
-import 'package:workaholic/views/pages/bottom_pages/calender/memo_list_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/calender/memo/memo_add_view.dart';
+import 'package:workaholic/views/pages/bottom_pages/calender/memo/memo_list_view.dart';
 
 class CalenderPageView extends StatefulWidget {
   const CalenderPageView({super.key});

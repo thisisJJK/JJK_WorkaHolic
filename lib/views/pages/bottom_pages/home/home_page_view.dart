@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workaholic/controllers/memo_controller.dart';
+import 'package:workaholic/controllers/spot_card_controller.dart';
 import 'package:workaholic/views/btn/add_spot_btn.dart';
+import 'package:workaholic/views/btn/manage_spot_btn.dart';
 import 'package:workaholic/views/pages/bottom_pages/home/cards/weekly_calender_card.dart';
-import 'package:workaholic/views/pages/bottom_pages/home/cards/work_spot_card.dart';
+import 'package:workaholic/views/pages/bottom_pages/home/cards/work_spot_card.view.dart';
 import 'package:workaholic/views/pages/bottom_pages/home/cards/work_timer_card.dart';
 
 class HomePageView extends StatefulWidget {
@@ -16,10 +18,12 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageState extends State<HomePageView> {
   final MemoController memoController = Get.put(MemoController());
+  final SpotCardController spotCardController = Get.put(SpotCardController());
 
   @override
   void initState() {
     memoController.fetchMemos(DateTime.now());
+    spotCardController.fetchSpots();
 
     super.initState();
   }
@@ -40,36 +44,31 @@ class _HomePageState extends State<HomePageView> {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: Column(
-            // 카드 형태
-            children: [
-              Expanded(
-                child: ListView(
-                  children: const [
-                    WeeklyCalenderCard(),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    WorkTimer(),
-                  ],
-                ),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  const WeeklyCalenderCard(),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const WorkTimerCard(),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  WorkSpotCard(),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  AddSpotBtn(),
+                  const ManageSpotBtn(),
+                ],
               ),
-
-              const SingleChildScrollView(
-                physics: PageScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    WorkSpotCard(),
-                    WorkSpotCard(),
-                    WorkSpotCard(),
-                  ],
-                ),
-              ),
-
-              // 근무지 -> 슬라이더로
-              const AddSpotBtn(), //추가
-            ],
+            ),
           ),
         ));
   }

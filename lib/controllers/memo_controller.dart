@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:workaholic/models/memo/memo_model.dart';
+import 'package:workaholic/models/memo_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MemoController extends GetxController {
